@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmission Media Comparison Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📡 Transmission Media Comparison Dashboard</h1>
+            <p class="subtitle">Analyze and compare different wired and wireless transmission media</p>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Fastest Medium</div>
+                <div class="card-value" id="fastestMedium">Loading...</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <div class="card-title">Most Cost-Effective</div>
+                <div class="card-value" id="cheapestMedium">Loading...</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📏</div>
+                <div class="card-title">Longest Range</div>
+                <div class="card-value" id="longestRange">Loading...</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Most Reliable</div>
+                <div class="card-value" id="mostReliable">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="mediaType">Media Type:</label>
+                    <select id="mediaType" onchange="applyFilters()">
+                        <option value="all">All Media</option>
+                        <option value="wired">Wired Only</option>
+                        <option value="wireless">Wireless Only</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="chartType">Comparison View:</label>
+                    <select id="chartType" onchange="updateCharts()">
+                        <option value="speed">Speed Comparison</option>
+                        <option value="cost">Cost Distribution</option>
+                        <option value="reliability">Reliability Analysis</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Side-by-Side Comparison -->
+            <div>
+                <label style="margin-bottom: 10px; display: block;">⚖️ Select Media for Direct Comparison (max 4):</label>
+                <div class="comparison-selector" id="comparisonSelector">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3>📊 Speed Comparison (Mbps)</h3>
+                <canvas id="speedChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>💰 Cost Distribution</h3>
+                <canvas id="costChart"></canvas>
+            </div>
+
+            <div class="chart-container" style="grid-column: span 2;">
+                <h3>🎯 Overall Performance Radar</h3>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th>Media Type</th>
+                        <th>Category</th>
+                        <th>Speed (Max)</th>
+                        <th>Cost</th>
+                        <th>Interference</th>
+                        <th>Reliability</th>
+                        <th>Coverage</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                No media found matching your criteria.
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
